@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "71dc0d84-b70e-44cd-9384-4c1284557c32",
+		"name": "Liera.Aurora",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Categories",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scored Categories",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/1,5,4,3,3/scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"1,5,4,3,3",
+						"scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "High Scored Categories",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/1,5,4,3,3/high-scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"1,5,4,3,3",
+						"high-scored-categories"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
