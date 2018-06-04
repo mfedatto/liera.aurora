@@ -1,13 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liera.Aurora.Domain", "Liera.Aurora.Domain\Liera.Aurora.Domain.csproj", "{15F58D04-E4F3-41CD-B2A2-44FFAEE455CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liera.Aurora.Domain", "Liera.Aurora.Domain\Liera.Aurora.Domain.csproj", "{08FD88C1-622D-4A97-BEBB-FA02679E7117}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liera.Aurora.Application", "Liera.Aurora.Application\Liera.Aurora.Application.csproj", "{6386A506-4B9D-4C8C-9127-2AA954FAD7BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liera.Aurora.Business", "Liera.Aurora.Business\Liera.Aurora.Business.csproj", "{8BE94632-769D-4A4B-BBCA-50A6779C1757}"
+	ProjectSection(ProjectDependencies) = postProject
+		{08FD88C1-622D-4A97-BEBB-FA02679E7117} = {08FD88C1-622D-4A97-BEBB-FA02679E7117}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liera.Aurora.ApplicationTest", "Liera.Aurora.ApplicationTest\Liera.Aurora.ApplicationTest.csproj", "{2DB25E01-CF1C-4A09-B573-EEDF07D00CCC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liera.Aurora.BusinessTest", "Liera.Aurora.BusinessTest\Liera.Aurora.BusinessTest.csproj", "{DDCDA510-C13C-4A4F-96E2-D376CC7A91C9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8BE94632-769D-4A4B-BBCA-50A6779C1757} = {8BE94632-769D-4A4B-BBCA-50A6779C1757}
+		{08FD88C1-622D-4A97-BEBB-FA02679E7117} = {08FD88C1-622D-4A97-BEBB-FA02679E7117}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liera.Aurora.WebApi", "Liera.Aurora.WebApi\Liera.Aurora.WebApi.csproj", "{6CAEBB76-B27D-45E2-9728-32A3E4C82283}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,23 +24,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{15F58D04-E4F3-41CD-B2A2-44FFAEE455CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{15F58D04-E4F3-41CD-B2A2-44FFAEE455CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{15F58D04-E4F3-41CD-B2A2-44FFAEE455CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{15F58D04-E4F3-41CD-B2A2-44FFAEE455CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6386A506-4B9D-4C8C-9127-2AA954FAD7BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6386A506-4B9D-4C8C-9127-2AA954FAD7BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6386A506-4B9D-4C8C-9127-2AA954FAD7BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6386A506-4B9D-4C8C-9127-2AA954FAD7BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DB25E01-CF1C-4A09-B573-EEDF07D00CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DB25E01-CF1C-4A09-B573-EEDF07D00CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DB25E01-CF1C-4A09-B573-EEDF07D00CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DB25E01-CF1C-4A09-B573-EEDF07D00CCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08FD88C1-622D-4A97-BEBB-FA02679E7117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08FD88C1-622D-4A97-BEBB-FA02679E7117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08FD88C1-622D-4A97-BEBB-FA02679E7117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08FD88C1-622D-4A97-BEBB-FA02679E7117}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BE94632-769D-4A4B-BBCA-50A6779C1757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BE94632-769D-4A4B-BBCA-50A6779C1757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BE94632-769D-4A4B-BBCA-50A6779C1757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BE94632-769D-4A4B-BBCA-50A6779C1757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDCDA510-C13C-4A4F-96E2-D376CC7A91C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDCDA510-C13C-4A4F-96E2-D376CC7A91C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDCDA510-C13C-4A4F-96E2-D376CC7A91C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDCDA510-C13C-4A4F-96E2-D376CC7A91C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CAEBB76-B27D-45E2-9728-32A3E4C82283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CAEBB76-B27D-45E2-9728-32A3E4C82283}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CAEBB76-B27D-45E2-9728-32A3E4C82283}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CAEBB76-B27D-45E2-9728-32A3E4C82283}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EBD7377A-B701-4C5E-B80E-F9CCB9983801}
+		SolutionGuid = {188866AD-7E32-428A-A849-37193A01A95C}
 	EndGlobalSection
 EndGlobal
