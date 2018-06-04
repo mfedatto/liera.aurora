@@ -7,6 +7,20 @@
 	"item": [
 		{
 			"name": "Categories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3330db4d-dc6e-4191-a9db-8e6dd647511f",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -28,6 +42,20 @@
 		},
 		{
 			"name": "Scored Categories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bcafe09-6c06-4610-8a66-9e2f779ec096",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -51,6 +79,20 @@
 		},
 		{
 			"name": "High Scored Categories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d83c7ba1-919d-4892-b7e3-4439ec18f4b8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "noauth"
