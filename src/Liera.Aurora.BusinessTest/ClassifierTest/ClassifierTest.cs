@@ -92,7 +92,6 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
                     Domain.Enumerators.DiceResult.One,
-                    Domain.Enumerators.DiceResult.One,
                     Domain.Enumerators.DiceResult.Two,
                     Domain.Enumerators.DiceResult.Three
                 };
@@ -211,7 +210,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         #region Combinated Values Tests
 
         [TestMethod]
-        public void CombinatedValuesTest_Pair_1()
+        public void CombinedValuesTest_Pair_1()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -232,7 +231,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_Pair_2()
+        public void CombinedValuesTest_Pair_2()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -253,7 +252,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_Pair_3()
+        public void CombinedValuesTest_Pair_3()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -275,7 +274,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_TwoPairs_1()
+        public void CombinedValuesTest_TwoPairs_1()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -295,7 +294,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_TwoPairs_2()
+        public void CombinedValuesTest_TwoPairs_2()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -316,7 +315,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_ThreeOfAKind_1()
+        public void CombinedValuesTest_ThreeOfAKind_1()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -338,7 +337,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_ThreeOfAKind_2()
+        public void CombinedValuesTest_ThreeOfAKind_2()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -359,7 +358,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_FourOfAKind_1()
+        public void CombinedValuesTest_FourOfAKind_1()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -380,7 +379,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_FourOfAKind_2()
+        public void CombinedValuesTest_FourOfAKind_2()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -402,7 +401,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_MinorStraight_1()
+        public void CombinedValuesTest_MinorStraight_1()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -422,7 +421,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_MinorStraight_2()
+        public void CombinedValuesTest_MinorStraight_2()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -442,7 +441,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_MajorStraight_1()
+        public void CombinedValuesTest_MajorStraight_1()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -462,7 +461,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_FullHouse_1()
+        public void CombinedValuesTest_FullHouse_1()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -482,7 +481,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_FullHouse_2()
+        public void CombinedValuesTest_FullHouse_2()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -502,7 +501,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_Aurora_1()
+        public void CombinedValuesTest_Aurora_1()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -522,7 +521,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_Aurora_2()
+        public void CombinedValuesTest_Aurora_2()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {
@@ -542,7 +541,7 @@ namespace Liera.Aurora.BusinessTest.ClassifierTest
         }
 
         [TestMethod]
-        public void CombinatedValuesTest_Aurora_3()
+        public void CombinedValuesTest_Aurora_3()
         {
             Domain.Enumerators.DiceResult[] input =
                 new Domain.Enumerators.DiceResult[] {

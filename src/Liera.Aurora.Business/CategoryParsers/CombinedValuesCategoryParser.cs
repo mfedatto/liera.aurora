@@ -7,7 +7,7 @@ namespace Liera.Aurora.Business.CategoryParsers
     /// <summary>
     /// Parser for categories of combined result values
     /// </summary>
-    public class CombinatedValuesCategoryParser
+    public class CombinedValuesCategoryParser
     {
         #region Private Static Methods
 
@@ -40,8 +40,7 @@ namespace Liera.Aurora.Business.CategoryParsers
         /// <param name="occurs"></param>
         /// <param name="multiple"></param>
         /// <returns></returns>
-        private static int[] GetRepeatedValueCategoryValue(int[] diceResultList, int occurs,
-            bool multiple = false)
+        private static int[] GetRepeatedValueCategoryValue(int[] diceResultList, int occurs)
         {
             Dictionary<int, int> diceResultOcurrencies = GetResultValueOccurencies(diceResultList);
             IEnumerable<KeyValuePair<int, int>> diceResultsMatchingOcurrencies;
@@ -49,17 +48,13 @@ namespace Liera.Aurora.Business.CategoryParsers
             
             diceResultsMatchingOcurrencies = diceResultOcurrencies.Where(i => i.Value == occurs);
 
-            if ((diceResultsMatchingOcurrencies.Count() > 0 && !multiple)
-                || (diceResultsMatchingOcurrencies.Count() > 1 && multiple))
+            if (diceResultsMatchingOcurrencies.Count() > 0)
             {
                 result = new List<int>();
 
-                foreach (KeyValuePair<int, int> pair
-                    in diceResultsMatchingOcurrencies)
+                foreach (KeyValuePair<int, int> pair in diceResultsMatchingOcurrencies)
                 {
                     result.Add(pair.Key * pair.Value);
-
-                    if (!multiple) break;
                 }
             }
 
@@ -113,7 +108,7 @@ namespace Liera.Aurora.Business.CategoryParsers
         [Domain.Attributes.CategoryParserMethod(Domain.Enumerators.Category.Pair)]
         public static int GetPairCategoryValue(int[] diceResultList)
         {
-            return GetRepeatedValueCategoryValue(diceResultList, 2)[0];
+            return GetRepeatedValueCategoryValue(diceResultList, 2).Max();
         }
 
         /// <summary>
@@ -124,7 +119,12 @@ namespace Liera.Aurora.Business.CategoryParsers
         [Domain.Attributes.CategoryParserMethod(Domain.Enumerators.Category.TwoPairs)]
         public static int GetTwoPairsCategoryValue(int[] diceResultList)
         {
-            return GetRepeatedValueCategoryValue(diceResultList, 2, true).Sum();
+            int result = 0;
+            int[] categoryValue = GetRepeatedValueCategoryValue(diceResultList, 2);
+
+            if (categoryValue.Length > 1) result = categoryValue.Sum();
+
+            return result;
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Liera.Aurora.Business.CategoryParsers
         [Domain.Attributes.CategoryParserMethod(Domain.Enumerators.Category.ThreeOfAKind)]
         public static int GetThreeOfAKindCategoryValue(int[] diceResultList)
         {
-            return GetRepeatedValueCategoryValue(diceResultList, 3)[0];
+            return GetRepeatedValueCategoryValue(diceResultList, 3).Max();
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace Liera.Aurora.Business.CategoryParsers
         [Domain.Attributes.CategoryParserMethod(Domain.Enumerators.Category.FourOfAKind)]
         public static int GetFourOfAKindCategoryValue(int[] diceResultList)
         {
-            return GetRepeatedValueCategoryValue(diceResultList, 4)[0];
+            return GetRepeatedValueCategoryValue(diceResultList, 4).Max();
         }
 
         /// <summary>
