@@ -1709,6 +1709,1086 @@
 			"response": []
 		},
 		{
+			"name": "Scored Categories (2,6,3,3,3)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1698df31-c506-4a47-a85e-d2011234eeea",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"2,6,3,3,3\",",
+							"    scoredCategories: [",
+							"        { category: \"Ones\", scored: 0 },",
+							"        { category: \"Pair\", scored: 0 },",
+							"        { category: \"TwoPairs\", scored: 0 },",
+							"        { category: \"ThreeOfAKind\", scored: 9 },",
+							"        { category: \"FourOfAKind\", scored: 0 },",
+							"        { category: \"Twos\", scored: 2 },",
+							"        { category: \"Threes\", scored: 9 },",
+							"        { category: \"Fours\", scored: 0 },",
+							"        { category: \"Fives\", scored: 0 },",
+							"        { category: \"Sixes\", scored: 6 },",
+							"        { category: \"MinorStraight\", scored: 0 },",
+							"        { category: \"MajorStraight\", scored: 0 },",
+							"        { category: \"FullHouse\", scored: 0 },",
+							"        { category: \"Aurora\", scored: 0 }",
+							"    ]",
+							"}",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.scoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.scoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.scoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.scoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/2,6,3,3,3/scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"2,6,3,3,3",
+						"scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scored Categories (1,4,1,1,1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2cd5ef6-48a4-4454-92a6-b9af702e92c5",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"1,4,1,1,1\",",
+							"    scoredCategories: [",
+							"        { category: \"Ones\", scored: 4 },",
+							"        { category: \"Pair\", scored: 0 },",
+							"        { category: \"TwoPairs\", scored: 0 },",
+							"        { category: \"ThreeOfAKind\", scored: 0 },",
+							"        { category: \"FourOfAKind\", scored: 4 },",
+							"        { category: \"Twos\", scored: 0 },",
+							"        { category: \"Threes\", scored: 0 },",
+							"        { category: \"Fours\", scored: 4 },",
+							"        { category: \"Fives\", scored: 0 },",
+							"        { category: \"Sixes\", scored: 0 },",
+							"        { category: \"MinorStraight\", scored: 0 },",
+							"        { category: \"MajorStraight\", scored: 0 },",
+							"        { category: \"FullHouse\", scored: 0 },",
+							"        { category: \"Aurora\", scored: 0 }",
+							"    ]",
+							"}",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.scoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.scoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.scoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.scoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/1,4,1,1,1/scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"1,4,1,1,1",
+						"scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scored Categories (1,4,3,1,2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87fd9fc7-cae0-4fbf-a5e4-240d09af72d8",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"1,4,3,1,2\",",
+							"    scoredCategories: [",
+							"        { category: \"Ones\", scored: 2 },",
+							"        { category: \"Pair\", scored: 2 },",
+							"        { category: \"TwoPairs\", scored: 0 },",
+							"        { category: \"ThreeOfAKind\", scored: 0 },",
+							"        { category: \"FourOfAKind\", scored: 0 },",
+							"        { category: \"Twos\", scored: 2 },",
+							"        { category: \"Threes\", scored: 3 },",
+							"        { category: \"Fours\", scored: 4 },",
+							"        { category: \"Fives\", scored: 0 },",
+							"        { category: \"Sixes\", scored: 0 },",
+							"        { category: \"MinorStraight\", scored: 15 },",
+							"        { category: \"MajorStraight\", scored: 0 },",
+							"        { category: \"FullHouse\", scored: 0 },",
+							"        { category: \"Aurora\", scored: 0 }",
+							"    ]",
+							"}",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.scoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.scoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.scoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.scoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/1,4,3,1,2/scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"1,4,3,1,2",
+						"scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scored Categories (5,4,3,2,2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "97c66260-120d-4267-a99a-5e894f92956c",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"5,4,3,2,2\",",
+							"    scoredCategories: [",
+							"        { category: \"Ones\", scored: 0 },",
+							"        { category: \"Pair\", scored: 4 },",
+							"        { category: \"TwoPairs\", scored: 0 },",
+							"        { category: \"ThreeOfAKind\", scored: 0 },",
+							"        { category: \"FourOfAKind\", scored: 0 },",
+							"        { category: \"Twos\", scored: 4 },",
+							"        { category: \"Threes\", scored: 3 },",
+							"        { category: \"Fours\", scored: 4 },",
+							"        { category: \"Fives\", scored: 5 },",
+							"        { category: \"Sixes\", scored: 0 },",
+							"        { category: \"MinorStraight\", scored: 15 },",
+							"        { category: \"MajorStraight\", scored: 0 },",
+							"        { category: \"FullHouse\", scored: 0 },",
+							"        { category: \"Aurora\", scored: 0 }",
+							"    ]",
+							"}",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.scoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.scoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.scoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.scoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/5,4,3,2,2/scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"5,4,3,2,2",
+						"scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scored Categories (5,1,3,2,4)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "193fb532-73b0-4129-9ce3-22fe6f9ac5c1",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"5,1,3,2,4\",",
+							"    scoredCategories: [",
+							"        { category: \"Ones\", scored: 1 },",
+							"        { category: \"Pair\", scored: 0 },",
+							"        { category: \"TwoPairs\", scored: 0 },",
+							"        { category: \"ThreeOfAKind\", scored: 0 },",
+							"        { category: \"FourOfAKind\", scored: 0 },",
+							"        { category: \"Twos\", scored: 2 },",
+							"        { category: \"Threes\", scored: 3 },",
+							"        { category: \"Fours\", scored: 4 },",
+							"        { category: \"Fives\", scored: 5 },",
+							"        { category: \"Sixes\", scored: 0 },",
+							"        { category: \"MinorStraight\", scored: 0 },",
+							"        { category: \"MajorStraight\", scored: 20 },",
+							"        { category: \"FullHouse\", scored: 0 },",
+							"        { category: \"Aurora\", scored: 0 }",
+							"    ]",
+							"}",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.scoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.scoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.scoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.scoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/5,1,3,2,4/scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"5,1,3,2,4",
+						"scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scored Categories (5,3,3,3,5)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a7441d98-ab82-4ec8-8817-0b61b4f1a977",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"5,3,3,3,5\",",
+							"    scoredCategories: [",
+							"        { category: \"Ones\", scored: 0 },",
+							"        { category: \"Pair\", scored: 10 },",
+							"        { category: \"TwoPairs\", scored: 0 },",
+							"        { category: \"ThreeOfAKind\", scored: 9 },",
+							"        { category: \"FourOfAKind\", scored: 0 },",
+							"        { category: \"Twos\", scored: 0 },",
+							"        { category: \"Threes\", scored: 9 },",
+							"        { category: \"Fours\", scored: 0 },",
+							"        { category: \"Fives\", scored: 10 },",
+							"        { category: \"Sixes\", scored: 0 },",
+							"        { category: \"MinorStraight\", scored: 0 },",
+							"        { category: \"MajorStraight\", scored: 0 },",
+							"        { category: \"FullHouse\", scored: 19 },",
+							"        { category: \"Aurora\", scored: 0 }",
+							"    ]",
+							"}",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.scoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.scoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.scoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.scoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/5,3,3,3,5/scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"5,3,3,3,5",
+						"scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scored Categories (6,1,6,1,1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "35b593d3-71f7-471d-8a01-1e523e484290",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"6,1,6,1,1\",",
+							"    scoredCategories: [",
+							"        { category: \"Ones\", scored: 3 },",
+							"        { category: \"Pair\", scored: 12 },",
+							"        { category: \"TwoPairs\", scored: 0 },",
+							"        { category: \"ThreeOfAKind\", scored: 3 },",
+							"        { category: \"FourOfAKind\", scored: 0 },",
+							"        { category: \"Twos\", scored: 0 },",
+							"        { category: \"Threes\", scored: 0 },",
+							"        { category: \"Fours\", scored: 0 },",
+							"        { category: \"Fives\", scored: 0 },",
+							"        { category: \"Sixes\", scored: 12 },",
+							"        { category: \"MinorStraight\", scored: 0 },",
+							"        { category: \"MajorStraight\", scored: 0 },",
+							"        { category: \"FullHouse\", scored: 15 },",
+							"        { category: \"Aurora\", scored: 0 }",
+							"    ]",
+							"}",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.scoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.scoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.scoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.scoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/6,1,6,1,1/scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"6,1,6,1,1",
+						"scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scored Categories (1,1,1,1,1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "931275f4-855b-442e-9fd7-942a2b6f5ede",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"1,1,1,1,1\",",
+							"    scoredCategories: [",
+							"        { category: \"Ones\", scored: 5 },",
+							"        { category: \"Pair\", scored: 0 },",
+							"        { category: \"TwoPairs\", scored: 0 },",
+							"        { category: \"ThreeOfAKind\", scored: 0 },",
+							"        { category: \"FourOfAKind\", scored: 0 },",
+							"        { category: \"Twos\", scored: 0 },",
+							"        { category: \"Threes\", scored: 0 },",
+							"        { category: \"Fours\", scored: 0 },",
+							"        { category: \"Fives\", scored: 0 },",
+							"        { category: \"Sixes\", scored: 0 },",
+							"        { category: \"MinorStraight\", scored: 0 },",
+							"        { category: \"MajorStraight\", scored: 0 },",
+							"        { category: \"FullHouse\", scored: 0 },",
+							"        { category: \"Aurora\", scored: 50 }",
+							"    ]",
+							"}",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.scoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.scoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.scoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.scoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/1,1,1,1,1/scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"1,1,1,1,1",
+						"scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scored Categories (2,2,2,2,2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "67a7c5f5-9740-4199-86f6-791f2c0adf32",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"2,2,2,2,2\",",
+							"    scoredCategories: [",
+							"        { category: \"Ones\", scored: 0 },",
+							"        { category: \"Pair\", scored: 0 },",
+							"        { category: \"TwoPairs\", scored: 0 },",
+							"        { category: \"ThreeOfAKind\", scored: 0 },",
+							"        { category: \"FourOfAKind\", scored: 0 },",
+							"        { category: \"Twos\", scored: 10 },",
+							"        { category: \"Threes\", scored: 0 },",
+							"        { category: \"Fours\", scored: 0 },",
+							"        { category: \"Fives\", scored: 0 },",
+							"        { category: \"Sixes\", scored: 0 },",
+							"        { category: \"MinorStraight\", scored: 0 },",
+							"        { category: \"MajorStraight\", scored: 0 },",
+							"        { category: \"FullHouse\", scored: 0 },",
+							"        { category: \"Aurora\", scored: 50 }",
+							"    ]",
+							"}",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.scoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.scoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.scoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.scoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/2,2,2,2,2/scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"2,2,2,2,2",
+						"scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scored Categories (6,6,6,6,6)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1718a898-fae2-4379-bc53-ac5a816ed462",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"6,6,6,6,6\",",
+							"    scoredCategories: [",
+							"        { category: \"Ones\", scored: 0 },",
+							"        { category: \"Pair\", scored: 0 },",
+							"        { category: \"TwoPairs\", scored: 0 },",
+							"        { category: \"ThreeOfAKind\", scored: 0 },",
+							"        { category: \"FourOfAKind\", scored: 0 },",
+							"        { category: \"Twos\", scored: 0 },",
+							"        { category: \"Threes\", scored: 0 },",
+							"        { category: \"Fours\", scored: 0 },",
+							"        { category: \"Fives\", scored: 0 },",
+							"        { category: \"Sixes\", scored: 30 },",
+							"        { category: \"MinorStraight\", scored: 0 },",
+							"        { category: \"MajorStraight\", scored: 0 },",
+							"        { category: \"FullHouse\", scored: 0 },",
+							"        { category: \"Aurora\", scored: 50 }",
+							"    ]",
+							"}",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.scoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.scoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.scoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.scoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/6,6,6,6,6/scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"6,6,6,6,6",
+						"scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "High Scored Categories (1)",
 			"event": [
 				{
@@ -3285,6 +4365,1059 @@
 					"path": [
 						"dices-results",
 						"6,6,6,1,2",
+						"high-scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "High Scored Categories (2,6,3,3,3)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ee56661-da10-428f-80ba-a45ece01a8ff",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"2,6,3,3,3\",",
+							"    highScoredCategories: [",
+							"        { category: \"ThreeOfAKind\", scored: 9 },",
+							"        { category: \"Threes\", scored: 9 }",
+							"    ]",
+							"};",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.highScoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.highScoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.highScoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.highScoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5dfe62d2-39c3-40d5-9c64-22011db97461",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/2,6,3,3,3/high-scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"2,6,3,3,3",
+						"high-scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "High Scored Categories (1,4,1,1,1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dbdeb32a-9cce-4b25-a2fe-0a2bb6de6964",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"1,4,1,1,1\",",
+							"    highScoredCategories: [",
+							"        { category: \"Fours\", scored: 4 },",
+							"        { category: \"FourOfAKind\", scored: 4 },",
+							"        { category: \"Ones\", scored: 4 }",
+							"    ]",
+							"};",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.highScoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.highScoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.highScoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.highScoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5dfe62d2-39c3-40d5-9c64-22011db97461",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/1,4,1,1,1/high-scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"1,4,1,1,1",
+						"high-scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "High Scored Categories (1,4,3,1,2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "71249cbc-54bc-4592-8e83-8e76a6d7c877",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"1,4,3,1,2\",",
+							"    highScoredCategories: [",
+							"        { category: \"MinorStraight\", scored: 15 }",
+							"    ]",
+							"};",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.highScoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.highScoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.highScoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.highScoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5dfe62d2-39c3-40d5-9c64-22011db97461",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/1,4,3,1,2/high-scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"1,4,3,1,2",
+						"high-scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "High Scored Categories (5,4,3,2,2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "13b45b4a-566a-41aa-a3bb-0dc5978247de",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"5,4,3,2,2\",",
+							"    highScoredCategories: [",
+							"        { category: \"MinorStraight\", scored: 15 }",
+							"    ]",
+							"};",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.highScoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.highScoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.highScoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.highScoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5dfe62d2-39c3-40d5-9c64-22011db97461",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/5,4,3,2,2/high-scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"5,4,3,2,2",
+						"high-scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "High Scored Categories (5,1,3,2,4)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cd775cc-f9f1-43d1-a8a2-d25e5d7b1f3a",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"5,1,3,2,4\",",
+							"    highScoredCategories: [",
+							"        { category: \"MajorStraight\", scored: 20 }",
+							"    ]",
+							"};",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.highScoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.highScoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.highScoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.highScoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5dfe62d2-39c3-40d5-9c64-22011db97461",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/5,1,3,2,4/high-scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"5,1,3,2,4",
+						"high-scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "High Scored Categories (5,3,3,3,5)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5efaf4a6-801c-4a66-817c-ee3286e461ef",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"5,3,3,3,5\",",
+							"    highScoredCategories: [",
+							"        { category: \"FullHouse\", scored: 19 }",
+							"    ]",
+							"};",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.highScoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.highScoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.highScoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.highScoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5dfe62d2-39c3-40d5-9c64-22011db97461",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/5,3,3,3,5/high-scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"5,3,3,3,5",
+						"high-scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "High Scored Categories (6,1,6,1,1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a70974b8-7031-434a-af17-1c9c944b6218",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"6,1,6,1,1\",",
+							"    highScoredCategories: [",
+							"        { category: \"FullHouse\", scored: 15 }",
+							"    ]",
+							"};",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.highScoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.highScoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.highScoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.highScoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5dfe62d2-39c3-40d5-9c64-22011db97461",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/6,1,6,1,1/high-scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"6,1,6,1,1",
+						"high-scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "High Scored Categories (1,1,1,1,1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8b5e694a-3658-485e-90d3-db52d7dc47a3",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"1,1,1,1,1\",",
+							"    highScoredCategories: [",
+							"        { category: \"Aurora\", scored: 50 }",
+							"    ]",
+							"};",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.highScoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.highScoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.highScoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.highScoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5dfe62d2-39c3-40d5-9c64-22011db97461",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/1,1,1,1,1/high-scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"1,1,1,1,1",
+						"high-scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "High Scored Categories (2,2,2,2,2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5894ae9e-aca2-456b-a898-1bf1adc75940",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"2,2,2,2,2\",",
+							"    highScoredCategories: [",
+							"        { category: \"Aurora\", scored: 50 }",
+							"    ]",
+							"};",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.highScoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.highScoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.highScoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.highScoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5dfe62d2-39c3-40d5-9c64-22011db97461",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/2,2,2,2,2/high-scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"2,2,2,2,2",
+						"high-scored-categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "High Scored Categories (6,6,6,6,6)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "17f36716-91e4-4460-902f-af9d124698d8",
+						"type": "text/javascript",
+						"exec": [
+							"var expected = {",
+							"    dicesResults: \"6,6,6,6,6\",",
+							"    highScoredCategories: [",
+							"        { category: \"Aurora\", scored: 50 }",
+							"    ]",
+							"};",
+							"var obtained = JSON.parse(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Requested data matches the expected result.\", function() {",
+							"    var subjectExpected = [];",
+							"    var subjectObtained = [];",
+							"    var passed = true;",
+							"",
+							"    if (obtained.dicesResults == expected.dicesResults) {",
+							"        for (var i = 0; i < expected.highScoredCategories.length; i++) {",
+							"            var subjectObtainedCategoryScore = expected.highScoredCategories[i];",
+							"            ",
+							"            subjectExpected.push({ category: subjectObtainedCategoryScore.category, scored: subjectObtainedCategoryScore.scored });",
+							"        }",
+							"        ",
+							"        for (var j = 0; j < obtained.highScoredCategories.length; j++) {",
+							"            var subjectExpectedCategoryScore = obtained.highScoredCategories[j];",
+							"            ",
+							"            subjectObtained.push({ category: subjectExpectedCategoryScore.category, scored: subjectExpectedCategoryScore.scored });",
+							"        }",
+							"    ",
+							"        while (subjectExpected.length > 0) {",
+							"            var watchingExpected = subjectExpected.pop();",
+							"            var skippedObtained = [];",
+							"            var expectedMatchingFound = false;",
+							"    ",
+							"            for (var k = 0; k < subjectObtained.length; k++) {",
+							"                var watchingObtained = subjectObtained[k];",
+							"    ",
+							"                if (watchingExpected.category == watchingObtained.category",
+							"                && watchingExpected.scored == watchingObtained.scored) {",
+							"                    expectedMatchingFound = true;",
+							"                } else {",
+							"                    skippedObtained.push(watchingObtained);",
+							"                }",
+							"            }",
+							"    ",
+							"            if (!expectedMatchingFound) {",
+							"                passed = false;",
+							"                break;",
+							"            }",
+							"            ",
+							"            subjectObtained = skippedObtained;",
+							"        }",
+							"    }",
+							"    else {",
+							"        passed = false;",
+							"    }",
+							"    ",
+							"    pm.expect(passed).to.be.ok;",
+							"});",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5dfe62d2-39c3-40d5-9c64-22011db97461",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{liera-aurora-url}}/dices-results/6,6,6,6,6/high-scored-categories",
+					"host": [
+						"{{liera-aurora-url}}"
+					],
+					"path": [
+						"dices-results",
+						"6,6,6,6,6",
 						"high-scored-categories"
 					]
 				}
