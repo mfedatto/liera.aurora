@@ -34,26 +34,7 @@ namespace Liera.Aurora.Business.Classifier
         {
             if (CategoriesList == null)
             {
-                List<Domain.Enumerators.Category> categoriesList = new List<Domain.Enumerators.Category>()
-                {
-                    //Domain.Enumerators.Category.None, // it is not a real category, used as null
-                    Domain.Enumerators.Category.Ones,
-                    Domain.Enumerators.Category.Twos,
-                    Domain.Enumerators.Category.Threes,
-                    Domain.Enumerators.Category.Fours,
-                    Domain.Enumerators.Category.Fives,
-                    Domain.Enumerators.Category.Sixes,
-                    Domain.Enumerators.Category.Pair,
-                    Domain.Enumerators.Category.TwoPairs,
-                    Domain.Enumerators.Category.ThreeOfAKind,
-                    Domain.Enumerators.Category.FourOfAKind,
-                    Domain.Enumerators.Category.MinorStraight,
-                    Domain.Enumerators.Category.MajorStraight,
-                    Domain.Enumerators.Category.FullHouse,
-                    Domain.Enumerators.Category.Aurora
-                };
-
-                CategoriesList = categoriesList.ToArray();
+                CategoriesList = GetPublicCategories();
             }
 
             return CategoriesList;
@@ -222,6 +203,20 @@ namespace Liera.Aurora.Business.Classifier
             }
 
             return CategoryParsingMethods;
+        }
+
+        /// <summary>
+        /// Finds the public categories available.
+        /// </summary>
+        /// <returns></returns>
+        public Domain.Enumerators.Category[] GetPublicCategories()
+        {
+            Domain.Enumerators.Category[] publicCategories = Enum.GetValues(typeof(Domain.Enumerators.Category))
+                .Cast<Domain.Enumerators.Category>()
+                .Where(i => (int)i > 0)
+                .ToArray();
+
+            return publicCategories;
         }
 
         #endregion
